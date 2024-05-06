@@ -30,20 +30,20 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.token);
-  useEffect(()=>{
-    if(!user){
-      navigate("/login");
-    }else{
-      getGoalFunc();
-    }
-  },[])
+  // const user = useSelector((state) => state.user.token);
+  // useEffect(()=>{
+  //   if(!user){
+  //     navigate("/login");
+  //   }else{
+  //     getGoalFunc();
+  //   }
+  // },[])
 
-  const getGoalFunc=()=>{
-    apiWithToken(user).get(API_URLS.user.getGoals).then(res=>{
-      console.log(JSON.stringify(res))
-    })
-  }
+  // const getGoalFunc=()=>{
+  //   apiWithToken(user).get(API_URLS.user.getGoals).then(res=>{
+  //     console.log(JSON.stringify(res))
+  //   })
+  // }
 
   const [showModel, setShowModel]=useState(false);
   const [isOpenPopup, setIsOpenPopup] = useState(false);

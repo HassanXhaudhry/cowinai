@@ -1,70 +1,70 @@
-import React, { Fragment, useEffect, useRef } from 'react'
-import Navbar from '../components/Navbar'
-import hand from '../assets/hand.svg'
-import lefticonup from '../assets/iconleftup.png'
-import iconleft from '../assets/iconleft.png'
-import iconright from '../assets/iconright.png'
-import { useTheme } from '../contexts/ThemeContext';
-import {useTypewriter} from 'react-simple-typewriter';
-import lineafter from '../assets/lineafter.svg'
-import GoToTop from '../components/GoToTop'
-import Slider from '../components/sliders/Slider'
-import Slider2 from '../components/sliders/Slider2'
-import Slider3 from '../components/sliders/Slider3'
-import Slider4 from '../components/sliders/Slider4'
+import React, { Fragment, useEffect, useRef } from "react";
+import Navbar from "../components/Navbar";
+import hand from "../assets/hand.svg";
+import lefticonup from "../assets/iconleftup.png";
+import iconleft from "../assets/iconleft.png";
+import iconright from "../assets/iconright.png";
+import { useTheme } from "../contexts/ThemeContext";
+import { useTypewriter } from "react-simple-typewriter";
+import lineafter from "../assets/lineafter.svg";
+import GoToTop from "../components/GoToTop";
+import Slider from "../components/sliders/Slider";
+import Slider2 from "../components/sliders/Slider2";
+import Slider3 from "../components/sliders/Slider3";
+import Slider4 from "../components/sliders/Slider4";
 import { RiSearchLine } from "react-icons/ri";
-import bgcolor from '../assets/bgcolor.png';
-import zoom from '../assets/zoom.png';
-import meet from '../assets/meet.png';
-import webex from '../assets/webex.png';
-import teams from '../assets/teams.svg';
-import chrome from '../assets/chrome.png';
-import edge from '../assets/edge.png';
-import firefox from '../assets/firefox.png';
-import tick from '../assets/tick.svg';
-import heart from '../assets/heart.svg';
-import Pricing from '../components/Pricing'
-import MyFooter from '../components/Footer'
-import Faq from '../components/faq'
-import { NavLink } from 'react-router-dom';
-import TopAnimation from '../components/TopAnimation'
-import ExploreMentors from '../components/sub_domain_two/ExploreMentors'
-
+import bgcolor from "../assets/bgcolor.png";
+import zoom from "../assets/zoom.png";
+import meet from "../assets/meet.png";
+import webex from "../assets/webex.png";
+import teams from "../assets/teams.svg";
+import chrome from "../assets/chrome.png";
+import edge from "../assets/edge.png";
+import firefox from "../assets/firefox.png";
+import tick from "../assets/tick.svg";
+import heart from "../assets/heart.svg";
+import Pricing from "../components/Pricing";
+import MyFooter from "../components/Footer";
+import Faq from "../components/faq";
+import { NavLink } from "react-router-dom";
+import TopAnimation from "../components/TopAnimation";
 
 const LandingPage = () => {
-
-  
   const { darkMode } = useTheme();
-
 
   const tranform3d = useRef();
   useEffect(() => {
     effect3d();
   }, []);
-  
+
   const effect3d = () => {
     tranform3d.current.style.transform = `translate3d(0, 0, 0)`;
   };
 
-  
-  const [text]=useTypewriter({
-    words: ['Ace-Job-Interviews', 'Crack-Coding-Interviews', 'Part-Time Job & Internships', '1:1 Mentorship', 'Launch-Your-Side-Hustle', 'Grow-Your-Network'],
-    loop:{},
+  const [text] = useTypewriter({
+    words: [
+      "Ace-Job-Interviews",
+      "Crack-Coding-Interviews",
+      "Part-Time Job & Internships",
+      "1:1 Mentorship",
+      "Launch-Your-Side-Hustle",
+      "Grow-Your-Network",
+    ],
+    loop: {},
     typeSpeed: 120,
     delaySpeed: 800,
-    deleteSpeed:100,
+    deleteSpeed: 100,
   });
-  
+
   return (
     <Fragment>
-      <TopAnimation/>
+      <TopAnimation />
       <GoToTop />
       <Navbar darkMode={darkMode} />
 
       <div className={` ${darkMode && "dark"}`}>
         <div ref={tranform3d} className="dark:bg-dark overflow-hidden z-[-50]">
-        
-          <div className='pt-12 font-Roboto flex justify-center z-2'>
+          <div className="pt-12 font-Roboto flex justify-center z-2">
             <div className="w-72 h-12 font-bold text-3xl bg-[#4e43fa21] rounded-[30px] flex justify-center items-center ">
               <img src={hand} alt="" className="h-4 w-4 " />
               <span className="text-lightblue font-Roboto">
@@ -100,18 +100,19 @@ const LandingPage = () => {
 
           <div className="flex font-Manrope justify-center text-center items-center w-screen">
             <div className="pt-16 text-[#101828] lg:text-[70px] md:text-[50px] text-3xl font-bold dark:text-white px-3">
-            Real-Time Interview Answer!! 
-              <div className="flex font-Roboto sm:text-[30px] md:text-5xl text-lg text-center justify-center align-middle items-center pt-4 sm:pt-10">To Achieve &nbsp;
-            <span className=" font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient3 via-gradient4 to-gradient5">
-              {" "}
-              {text}{" "}
-            </span>&nbsp;
-            <img src={lineafter} alt="" className='sm:h-20 h-8'/>
-          </div>
+              Real-Time Interview Answer!!
+              <div className="flex font-Roboto sm:text-[30px] md:text-5xl text-lg text-center justify-center align-middle items-center pt-4 sm:pt-10">
+                To Achieve &nbsp;
+                <span className=" font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient3 via-gradient4 to-gradient5">
+                  {" "}
+                  {text}{" "}
+                </span>
+                &nbsp;
+                <img src={lineafter} alt="" className="sm:h-20 h-8" />
+              </div>
             </div>
           </div>
 
-          
           <div className="flex font-Roboto justify-center flex-col text-center pt-10">
             <h1 className="text-[#475467] dark:text-white text-[15px] sm:text-[20px]">
               CoWin support Your Career Journey !!
@@ -126,22 +127,23 @@ const LandingPage = () => {
 
           <div className="flex justify-center items-center flex-col">
             <img className="z-[-12] absolute" src={bgcolor} alt="" />
-            
+
             <div className="relative sm:mx-2 mx-3 w-full sm:w-full md:w-[90%] lg:w-[780px] sm:h-[450px] h-56  my-12 rounded-[40px] overflow-y-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-lightblue via-yellow to-orange border-gradient">
                 <div className="sm:h-[400px] h-44 bg-black rounded-[30px] lg:mx-6 mx-4 my-6 "></div>
               </div>
             </div>
-            <NavLink to='/login'>
-            <button className="w-[200px] font-Inter h-[45px] bg-gradient-to-r from-orange to-yellow rounded-lg text-white font-bold text-lg my-4 sm:my-0">
-              Get Started For Free
-            </button></NavLink>
-          <div className="py-12 font-Inter sm:text-4xl text-2xl flex justify-center flex-col sm:flex-row text-center mx-2">
-            <span className="text-lightblue">&nbsp;Direct&nbsp;</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gradient7 to-gradient8">
-            Mentorship and Networking
-            </span>
-          </div>
+            <NavLink to="/login">
+              <button className="w-[200px] font-Inter h-[45px] bg-gradient-to-r from-orange to-yellow rounded-lg text-white font-bold text-lg my-4 sm:my-0">
+                Get Started For Free
+              </button>
+            </NavLink>
+            <div className="py-12 font-Inter sm:text-4xl text-2xl flex justify-center flex-col sm:flex-row text-center mx-2">
+              <span className="text-lightblue">&nbsp;Direct&nbsp;</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gradient7 to-gradient8">
+                Mentorship and Networking
+              </span>
+            </div>
           </div>
 
           {/* Slider */}
@@ -158,12 +160,14 @@ const LandingPage = () => {
                   <RiSearchLine className="text-xl sm:text-2xl text-[#8D8D8D]" />
                 </div>
               </div>
-              <button
-                disabled
-                className="absolute font-Inter right-1 top-1 rounded-lg bg-blue-btn hover:bg-dark-blue py-2 sm:px-4 px-1 text-center align-middle text-xs cursor-pointer text-white"
-                type="button">
-                <NavLink to="/explorementors">Find Your Mentor</NavLink>
-              </button>
+              <NavLink to="/explorementors">
+                <button
+                  className="absolute font-Inter right-1 top-1 rounded-lg bg-blue-btn hover:bg-dark-blue py-2 sm:px-4 px-1 text-center align-middle text-xs cursor-pointer text-white"
+                  type="button"
+                >
+                  Find Your Mentor
+                </button>
+              </NavLink>
             </div>
           </div>
 
@@ -175,28 +179,26 @@ const LandingPage = () => {
           </div>
 
           <div className="flex flex-col font-Inter sm:flex-row sm:items-center justify-center items-start gap-4 ml-24 sm:m-l0 sm:ml-0 sm:gap-16 md:gap-6 text-black dark:text-white">
-  <div className="flex items-center ">
-    <img className="w-8 h-8 mr-2" src={zoom} alt="Zoom" />
-    Zoom
-  </div>
-  <div className="flex items-center">
-    <img className="w-8 h-8 mr-2" src={meet} alt="Google meet" />
-    Google meet
-  </div>
-  <div className="flex items-center">
-    <img className="w-8 h-8 mr-2" src={webex} alt="WebEx" />
-    WebEx
-  </div>
-  <div className="flex items-center">
-    <img className="w-8 h-8 mr-2" src={teams} alt="Microsoft teams" />
-    Microsoft teams
-  </div>
-  <div className="flex font-Inter text-black dark:text-white text-lg">
-    and more
-  </div>
-</div>
-
-          
+            <div className="flex items-center ">
+              <img className="w-8 h-8 mr-2" src={zoom} alt="Zoom" />
+              Zoom
+            </div>
+            <div className="flex items-center">
+              <img className="w-8 h-8 mr-2" src={meet} alt="Google meet" />
+              Google meet
+            </div>
+            <div className="flex items-center">
+              <img className="w-8 h-8 mr-2" src={webex} alt="WebEx" />
+              WebEx
+            </div>
+            <div className="flex items-center">
+              <img className="w-8 h-8 mr-2" src={teams} alt="Microsoft teams" />
+              Microsoft teams
+            </div>
+            <div className="flex font-Inter text-black dark:text-white text-lg">
+              and more
+            </div>
+          </div>
 
           <div className="py-12 font-Manrope sm:text-3xl text-2xl flex justify-center flex-col sm:flex-row text-center px-2">
             <span className="text-lightblue">
@@ -225,9 +227,7 @@ const LandingPage = () => {
           <div className={`pt-12 font-Roboto  flex justify-center z-[-3] mt-2`}>
             <div className="w-72 h-12 font-bold text-3xl bg-[#4e43fa21] rounded-[30px] flex justify-center items-center">
               <img src={hand} alt="" className="h-4 w-4 " />
-              <span className="text-lightblue ">
-                &nbsp;How&nbsp;
-              </span>
+              <span className="text-lightblue ">&nbsp;How&nbsp;</span>
               <span className=" text-transparent bg-clip-text bg-gradient-to-r from-gradient1 to-gradient2">
                 We do
               </span>
@@ -409,9 +409,7 @@ const LandingPage = () => {
           <div className={`pt-12 font-Roboto  flex justify-center z-[-4] mt-2`}>
             <div className="w-72 h-12 font-bold text-3xl bg-[#4e43fa21] rounded-[30px] flex justify-center items-center">
               <img src={hand} alt="" className="h-4 w-4 " />
-              <span className="text-lightblue">
-                &nbsp;Why&nbsp;
-              </span>
+              <span className="text-lightblue">&nbsp;Why&nbsp;</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gradient1 to-gradient2">
                 We do
               </span>
@@ -443,11 +441,9 @@ const LandingPage = () => {
 
           <div className="flex font-Manrope justify-center text-center">
             <div className="pt-12 text-xl sm:text-3xl w-[950px] px-4">
-              <span className="text-lightblue">
-                &nbsp;Unlock CoWin&nbsp;
-              </span>
+              <span className="text-lightblue">&nbsp;Unlock CoWin&nbsp;</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gradient7 to-gradient8">
-              AI Brilliance on A Budget
+                AI Brilliance on A Budget
               </span>
             </div>
           </div>
@@ -456,9 +452,7 @@ const LandingPage = () => {
             <div className="w-72 h-12 font-bold text-3xl bg-[#4e43fa21] rounded-[30px] flex justify-center items-center">
               <img src={hand} alt="" className="h-4 w-4 " />
 
-              <span className="text-lightblue">
-                &nbsp;Interview&nbsp;
-              </span>
+              <span className="text-lightblue">&nbsp;Interview&nbsp;</span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gradient1 to-gradient2">
                 Calls
               </span>
@@ -468,15 +462,13 @@ const LandingPage = () => {
 
           <div className="text-center font-Manrope items-center text-black sm:text-4xl text-lg px-4 flex justify-center my-8 dark:text-white">
             <div>
-              <span>
-                350k+
-              </span>
+              <span>350k+</span>
             </div>
             &nbsp; ACED Interviews 🤖
           </div>
 
           <span className="flex font-Roboto justify-center items-center text-[#475467] mx-4 dark:text-white sm:text-base text-xs text-center mb-8">
-             What Candidate And Coroperate Executives Like About Cowin AI
+            What Candidate And Coroperate Executives Like About Cowin AI
           </span>
 
           <div className="text-center font-Manrope text-black text-2xl sm:text-4xl px-4 flex justify-center my-8 dark:text-white">
@@ -497,6 +489,6 @@ const LandingPage = () => {
       </div>
     </Fragment>
   );
-}
+};
 
-export default LandingPage
+export default LandingPage;

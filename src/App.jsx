@@ -2,11 +2,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
-import Home from "./pages/Home";
-import Recommendation from "./pages/Recommendation";
-import Pricing from "./pages/Pricing";
-import Howwedo from "./pages/Howwedo";
-import Tutorials from "./pages/Tutorials";
 import Dashboard from "./pages/Dashboard";
 import Login from "./components/Login";
 import TrialSession from "./components/dashboard_components/mockInterview/cowin_propilot/TrialSession";
@@ -28,11 +23,6 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/home" element={<Home/>}/>
-      <Route path="/recommendation" element={<Recommendation/>}/>
-      <Route path="/pricing" element={<Pricing/>}/>
-      <Route path="/howwedo" element={<Howwedo/>}/>
-      <Route path="/tutorials" element={<Tutorials/>}/>
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/trialsession" element={<TrialSession/>}/>

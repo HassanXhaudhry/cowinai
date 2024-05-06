@@ -10,31 +10,28 @@ import { useTheme } from '../contexts/ThemeContext';
 
 const Navbar = () => {
     
-
-
-
     const { darkMode, toggleDarkMode } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrollLock, setScrollLock] = useState(false);
     const [icon, setIcon] = useState(darkMode ? FiSun : FiMoon);
 
-    const useBodyScrollLock = () => {
-        const bodyStyle = document.body.style;
+    // const useBodyScrollLock = () => {
+    //     const bodyStyle = document.body.style;
 
-        useEffect(() => {
-            bodyStyle.overflowY = scrollLock ? 'hidden' : 'auto';
+    //     useEffect(() => {
+    //         bodyStyle.overflowY = scrollLock ? 'hidden' : 'auto';
 
-            return () => {
-                bodyStyle.overflowY = 'auto';
-            };
-        }, [scrollLock]);
-    };
-
-    useBodyScrollLock();
-
-    // const toggleScroll = () => {
-    //     setScrollLock(!scrollLock);
+    //         return () => {
+    //             bodyStyle.overflowY = 'auto';
+    //         };
+    //     }, [scrollLock]);
     // };
+
+    // useBodyScrollLock();
+
+    // // const toggleScroll = () => {
+    // //     setScrollLock(!scrollLock);
+    // // };
 
     const togggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -59,12 +56,11 @@ const Navbar = () => {
                     </div>
                 
                     <div className='lg:flex items-center cursor-pointer hidden text-nav-text dark:text-white'>
-                        <NavLink to="/home" className='block hover:text-blue-btn py-2 px-4 '>Home</NavLink>
+                    <NavLink to="/dashboard" className='block hover:text-blue-btn py-2 px-4 '>Dashboard</NavLink>
                         <NavLink to="/recommendation" className='block hover:text-blue-btn py-2 px-4 '>Recommedation</NavLink>
-                        <NavLink to="/pricing" className='block hover:text-blue-btn py-2 px-4 '>Pricing</NavLink>
                         <NavLink to="/howwedo" className='block hover:text-blue-btn py-2 px-4 '>How we do?</NavLink>
-                        <NavLink to="/tutorials" className='block hover:text-blue-btn py-2 px-4 '>Tutorials</NavLink>
-                        <NavLink to="/dashboard" className='block hover:text-blue-btn py-2 px-4 '>Dashboard</NavLink>
+                        <NavLink to="/tutorials" className='block hover:text-blue-btn py-2 px-4 '>Why we do?</NavLink>
+                        <NavLink to="/pricing" className='block hover:text-blue-btn py-2 px-4 '>Pricing</NavLink>
                     </div>
                  
                     <div className='lg:block hidden text-black pr-4'>
@@ -91,12 +87,11 @@ const Navbar = () => {
                 {isMenuOpen && (
                     <div className='mt-0 w-full h-screen top-0 left-0 bg-dark text-white py-1 z-1000'>
                         <div className='mt-10 flex flex-col gap-2 cursor-pointer'>
-                            <NavLink to='/home' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Home</NavLink>
+                        <NavLink to='/dashboard' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Dashboard</NavLink>
                             <NavLink to='/recommendation' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Recommendation</NavLink>
-                            <NavLink to='/pricing' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Pricing</NavLink>
                             <NavLink to='/howwedo' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>How we do?</NavLink>
-                            <NavLink to='/tutorials' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Tutorials</NavLink>
-                            <NavLink to='/dashboard' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Dashboard</NavLink>
+                            <NavLink to='/tutorials' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Why we do?</NavLink>
+                            <NavLink to='/pricing' className='block hover:text-blue-btn py-2 mx-4 border-b-[1px] border-grey'>Pricing</NavLink>
                         </div>
                     </div>
                 )}

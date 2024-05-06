@@ -9,7 +9,6 @@ import mentors from '../../assets/mentors.svg';
 import chatbox from '../../assets/chatbox.svg';
 import titlelogo from '../../assets/title_logo.png';
 import usersetting from '../../assets/usersetting.png'
-import ring from '../../assets/ring.svg';
 import letter from '../../assets/letter.svg';
 import { TbClockCheck } from "react-icons/tb";
 import { IoWalletOutline } from "react-icons/io5";
@@ -445,52 +444,6 @@ const ExploreMentors = () => {
             </div>
           </div>
         </div>
-<div className='grid grid-cols-1 md:grid-cols-3 border border-solid border-gray-200 my-3 rounded-md sm:w-[90%] w-[90%] xl:ml-5 lg-ml-3 ml-2'>
-
-                  <div className='flex flex-col py-6 relative px-2 w-[120%]'>
-                    <img src={girl} alt="" className='w-[70%] h-[70%]' />
-                    <div className='flex gap-2 py-2 items-center'><img src={star} alt="" className='h-3 w-3' /><img src={emptystar} alt="" className='h-3 w-3' /><p className='text-[11px] text-[#545454]'>3.0 <span className='text-[#7C7A84]'>/ 24 Reviews</span></p></div>
-                    <div className='flex justify-center items-center mt-1 mb-2 w-[80%] h-[20%]'><button className='px-4 py-[6px] bg-[#4E43FA] rounded-sm text-white text-xs'>View Profile</button></div>
-                    <p className='text-[9px] text-[#F97316] pt-1'>Available today in 19.15 - 21.00 </p>
-                  </div>
-
-                  <div className='flex flex-col relative sm:px-[1px] px-2'>
-                    <img src={heart} alt="" className='h-7 w-7 absolute top-0 right-0 mt-3 mr-3' />
-                    <div className='flex gap-1 pt-10'><p className='text-md font-bold'>Elizabeth S. Cipolla</p><img src={tick} alt="" className='w-4 h-4 mt-1' /></div>
-                    <div className='flex text-xs justify-between'><p>DevOps | Data Analyst <br />
-                      Currently working at: IBM </p><div><div className='flex text-white bg-gradient-to-r from-[#38E0EB] via-[#FEB749] to-[#F04C18] rounded-2xl h-6 w-24 items-center gap-1 mr-4 text-[11px] justify-center'><img src={emptystar} alt="" className='w-3 h-3' />Top Mentor</div></div></div>
-                    <div className='flex text-[7px] gap-1 my-2 flex-wrap justify-start'>
-                      <p className='h-5 w-auto sm:w-24 px-2 flex justify-center items-center text-white rounded-xl bg-[#FEB749]'>11+ Years of experience</p>
-                      <p className='h-5 w-auto sm:w-8 px-2 flex justify-center items-center text-white rounded-xl bg-[#F04C18]'>DSA</p>
-                      <p className='h-5 w-auto sm:w-12 px-2 flex justify-center items-center text-white rounded-xl bg-[#38E0EB]'>Python</p>
-                      <p className='h-5 w-auto sm:w-12 px-2 flex justify-center items-center text-white rounded-xl bg-[#4E43FA]'>More + </p>
-                      <p className='h-5 w-auto sm:w-16 px-2 flex justify-center items-center text-white rounded-xl bg-[#FEB749]'>System Design</p>
-                      <p className='h-5 w-auto sm:w-6 px-2 flex justify-center items-center text-white rounded-xl bg-[#F04C18]'>ML</p>
-                      <p className='h-5 w-auto sm:w-12 px-2 flex justify-center items-center text-white rounded-xl bg-[#38E0EB]'>Python</p>
-                    </div>
-                    <p className='text-[10px] text-[#7C7A84] px-2'>Hello, my name is Leandre and I am a South African currently living in France. I am a recently certified TEFL teacher, passionate and enthusiastic about meeting <span className='text-[#4E43FA]'>more ...</span> </p>
-                    <div className='flex text-[11px] gap-2 px-2 items-center py-1'><img src={person} alt="" /><p>For: Experienced Professional</p></div>
-                    <div className='flex text-[11px] gap-2 px-2 items-center pb-1'><img src={titlelogo} alt="" className='h-3 w-3' /><p>Targeting: Backend Developer</p></div>
-                  </div>
-
-                {/* <div className="h-full border-l border-[#C4C4C4]"></div> */}
-
-                <div className='flex flex-col'>
-                  <div className='flex justify-end pr-8 relative p-2 text-transparent bg-clip-text bg-gradient-to-r font-semibold from-[#38E0EB] to-[#FEB749] text-xs'><p>Send message</p>
-                    <img src={letter} alt="" className='h-5 w-5 absolute top-0 right-0 m-2' /></div>
-                  <p className='text-[10px] font-semibold pl-2 my-2 text-[#292638]'><span className='text-xl'>$45</span>/per session</p>
-                  <div className='flex justify-center items-center pt-2'>
-                    <button className='px-2 py-[6px] w-[70%] bg-[#4E43FA] rounded-sm text-white flex justify-center text-xs'>Book 1:1 Mentorship</button>
-                  </div>
-
-                  <div className="border-[#C4C4C4] border-b my-4"></div>
-                  <p className='text-[12px] font-semibold pl-2 pb-2'>Every Month Of Mentorship Includes</p>
-                  <div className='flex text-xs gap-1 pl-2 pb-2 items-center'><img src={cam} alt="" className='h-3 w-4' /><p className='text-[9px]'>1 session/week (1:1 Sessions)</p></div>
-                  <div className='flex text-xs gap-1 pl-2 pb-2 items-center'><img src={chat} alt="" className='h-3 w-[14px]' /><p className='text-[9px]'>Almost Immediately (Chat Support)</p></div>
-                  <div className='flex text-xs gap-1 pl-2 pb-2 items-center'><img src={clock} alt="" className='h-[14px] w-[14px]' /><p className='text-[9px]'>Everyday (Tasks & Followup)</p></div>
-                  <div className='flex text-xs gap-1 pl-2 pb-2 items-center'><img src={symbol} alt="" className='h-4 w-4' /><p className='text-[9px]'>Community Lead (Job Referrals)</p></div>
-                </div>
-            </div>
       </div>
 
     </Fragment>
