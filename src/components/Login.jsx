@@ -179,24 +179,24 @@ const Login = () => {
         return `${pin1}${pin2}${pin3}${pin4}${pin5}${pin6}`;
     };
     const handleVerifyClick = () => {
-        const pinCode = getPinCode(pin1Ref, pin2Ref, pin3Ref, pin4Ref, pin5Ref, pin6Ref);
+        // const pinCode = getPinCode(pin1Ref, pin2Ref, pin3Ref, pin4Ref, pin5Ref, pin6Ref);
     
-        const valuesForApi = {
-            'otp': pinCode,
-            'email': emailRef.current
-        };
+        // const valuesForApi = {
+        //     'otp': pinCode,
+        //     'email': emailRef.current
+        // };
     
-        api.post(API_URLS.user.verifyOTP, valuesForApi)
-            .then(res => {
-                console.log(res);
-                setTimeout(() => {
-                    setShowResetPassword(true);
-                    setShowExplain(false);
-                }, 2000);
-            })
-            .finally(() => {
-                setShowResetPassword(true);
-            });
+        // api.post(API_URLS.user.verifyOTP, valuesForApi)
+        //     .then(res => {
+        //         console.log(res);
+        //         setTimeout(() => {
+        //             setShowResetPassword(true);
+        //             setShowExplain(false);
+        //         }, 2000);
+        //     })
+        //     .finally(() => {
+        //         setShowResetPassword(true);
+        //     });
     };
     
 
@@ -211,7 +211,7 @@ const Login = () => {
 
                 <Fragment>
                     {showLogin ? (
-                        <div className='bg-white sm:w-[420px] sm:h-[470px] w-[270px] h-[510px] rounded-xl'>
+                        <div className='bg-white sm:w-[420px] w-[270px] h-auto rounded-xl'>
                             <div className='sm:my-7 sm:mx-16 my-2 mx-8 font-Inter text-lg'>Login
                                 <p className='text-xs font-Inter text-[#9A9AB0] py-1'>Please enter your details to Login to Dashboard</p>
                                 <div>
@@ -330,7 +330,7 @@ const Login = () => {
                     ) : null}
 
                     {showSignup ? (
-                        <div className='bg-white sm:w-[420px] sm:h-[520px] w-[280px] h-[510px] rounded-xl'>
+                        <div className='bg-white sm:w-[420px] w-[280px] h-auto rounded-xl'>
                             <div className='sm:mt-2 sm:mx-16 mt-2 mx-6 font-Inter text-lg'>Signup
                                 <p className='sm:text-[11px] text-[9px] font-Inter text-[#9A9AB0]'>Please enter your details to create your free account.</p>
                                 <div>

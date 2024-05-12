@@ -101,14 +101,14 @@ const LandingPage = () => {
           <div className="flex font-Manrope justify-center text-center items-center w-screen">
             <div className="pt-16 text-[#101828] lg:text-[70px] md:text-[50px] text-3xl font-bold dark:text-white px-3">
               Real-Time Interview Answer!!
-              <div className="flex font-Roboto sm:text-[30px] md:text-5xl text-lg text-center justify-center align-middle items-center pt-4 sm:pt-10">
+              <div className="flex font-Roboto sm:text-[30px] md:text-5xl text-lg text-center justify-center align-middle items-center pt-6 sm:pt-16">
                 To Achieve &nbsp;
                 <span className=" font-bold text-transparent bg-clip-text bg-gradient-to-r from-gradient3 via-gradient4 to-gradient5">
                   {" "}
                   {text}{" "}
                 </span>
                 &nbsp;
-                <img src={lineafter} alt="" className="sm:h-20 h-8" />
+                <img src={lineafter} alt="" className="xl:h-14 lg:h-14 md:h-12 h-6" />
               </div>
             </div>
           </div>
