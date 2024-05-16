@@ -3,23 +3,27 @@ import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
 import { closePopup } from "../../../reducers/PopupReducer";
+import { createGoal } from "../../../reducers/GoalsReducer";
 
-const AddGoals = ({ addGoals }) => {
+const AddGoals = () => {
   const isPopupOpen = useSelector((state) => state.popup.isPopupOpen);
-  const dispatch = useDispatch();
+  
+  const dispatchPopup = useDispatch();
+  const dispatchGoals = useDispatch();
 
   const handleClosePopup = () => {
-    dispatch(closePopup());
+    dispatchPopup(closePopup());
   };
 
-  const handleFormSubmit = async (values, { setSubmitting }) => {
+  const handleFormSubmit = (values, { setSubmitting }) => {
+    dispatchGoals(createGoal(values));
     try {
-      addGoals([
+      [
         values.position,
         values.companyName,
         values.location,
         values.programmingLanguage,
-      ]);
+      ];
       setSubmitting(false);
       handleClosePopup();
     } catch (error) {
