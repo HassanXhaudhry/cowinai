@@ -13,11 +13,10 @@ const CreateGoals = () => {
   const [editGoals, setEditGoals] = useState(false);
   const [archivedGoals, setArchivedGoals] = useState([]);
   const [isActive, setIsActive] = useState(true);
+  const [selectedGoal, setSelectedGoal] = useState(null);
 
   const isPopupOpen = useSelector(state => state.popup.isPopupOpen);
   const { users, loading } = useSelector(state => state.goals);
-
-  const [selectedGoal, setSelectedGoal] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -81,8 +80,6 @@ const CreateGoals = () => {
       width="50"
       color="#ffffff"
       ariaLabel="oval-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
       />
       </div>);
   }
