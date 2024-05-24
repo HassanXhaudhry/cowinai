@@ -15,23 +15,20 @@ const Navbar = () => {
     const [scrollLock, setScrollLock] = useState(false);
     const [icon, setIcon] = useState(darkMode ? FiSun : FiMoon);
 
-    // const useBodyScrollLock = () => {
-    //     const bodyStyle = document.body.style;
+    const useBodyScrollLock = () => {
+        const bodyStyle = document.body.style;
 
-    //     useEffect(() => {
-    //         bodyStyle.overflowY = scrollLock ? 'hidden' : 'auto';
+        useEffect(() => {
+            bodyStyle.overflowY = scrollLock ? 'hidden' : 'auto';
 
-    //         return () => {
-    //             bodyStyle.overflowY = 'auto';
-    //         };
-    //     }, [scrollLock]);
-    // };
+            return () => {
+                bodyStyle.overflowY = 'auto';
+            };
+        }, [scrollLock]);
+    };
 
-    // useBodyScrollLock();
+    useBodyScrollLock();
 
-    // // const toggleScroll = () => {
-    // //     setScrollLock(!scrollLock);
-    // // };
 
     const togggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);

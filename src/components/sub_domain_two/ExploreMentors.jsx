@@ -350,7 +350,7 @@ const ExploreMentors = () => {
             <div className='flex flex-col border border-solid border-gray-200 p-1 rounded-md gap-5 h-auto w-[300px]'>
               <div className='flex items-center p-3 gap-2'>
                 <img src={fb} alt="" className='w-12 h-12' />
-                <p className='text-lg font-semibold'>Instagram</p></div>
+                <p className='text-lg font-semibold'>Facebook</p></div>
               <div className="border-b border-[#ECEEF0] w-full px-3"></div>
               <div>
                 <p className='text-xs font-light font-Manrope text-[#7C7A84] px-4'>Contact us to get updated with CoWin and latest News. </p>
@@ -360,7 +360,7 @@ const ExploreMentors = () => {
             <div className='flex flex-col border border-solid border-gray-200 p-1 rounded-md gap-5 h-auto w-[300px]'>
               <div className='flex items-center p-3 gap-2'>
                 <img src={twitter} alt="" className='w-12 h-12' />
-                <p className='text-lg font-semibold'>Instagram</p></div>
+                <p className='text-lg font-semibold'>Twitter</p></div>
               <div className="border-b border-[#ECEEF0] w-full px-3"></div>
               <div>
                 <p className='text-xs font-light font-Manrope text-[#7C7A84] px-4'>Contact us to get updated with CoWin and latest News. </p>

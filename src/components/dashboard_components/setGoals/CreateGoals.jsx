@@ -1,40 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import { Oval } from 'react-loader-spinner'
 import ActiveSec from "./ActiveSec";
 import AddGoals from "./AddGoals";
 import EditGoals from "./EditGoals";
 import { useSelector, useDispatch } from 'react-redux';
-import { openPopup } from '../../../reducers/PopupReducer';
+import { openPopup, closePopup } from '../../../reducers/PopupReducer';
 import InActiveSec from "./InActiveSec";
+import { readGoals, deleteGoal, archiveGoal, unarchiveGoal, editGoal } from "../../../reducers/GoalsReducer";
 
 const CreateGoals = () => {
+  const [editGoals, setEditGoals] = useState(false);
+  const [archivedGoals, setArchivedGoals] = useState([]);
+  const [isActive, setIsActive] = useState(true);
 
   const isPopupOpen = useSelector(state => state.popup.isPopupOpen);
+  const { users, loading } = useSelector(state => state.goals);
+
+  const [selectedGoal, setSelectedGoal] = useState(null);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(readGoals());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (users) {
+      setArchivedGoals(users.filter(user => user.isArchived));
+    }
+  }, [users]);
 
   const handleOpenPopup = () => {
     dispatch(openPopup());
   };
 
-  const [goals, setGoals] = useState([]);
-  const [editGoals, setEditGoals] = useState();
-  const [archivedGoals, setArchivedGoals] = useState([]);
-  const [isActive, setIsActive] = useState(true);
-
-  const addGoals = (goalsArray) => {
-    const [position, companyName, location, programmingLanguage] = goalsArray;
-    setGoals((prevGoals) => [
-      ...prevGoals,
-      {
-        id: uuidv4(),
-        position,
-        companyName,
-        location,
-        programmingLanguage,
-        isActive: true,
-      },
-    ]);
+  const handleClosePopup = () => {
+    dispatch(closePopup());
+    setEditGoals(false);
+    setSelectedGoal(null);
   };
 
   const handleArchive = () => {
@@ -46,39 +50,49 @@ const CreateGoals = () => {
   };
 
   const archiveGoals = (id) => {
-    const archivedGoal = goals.find((goal) => goal.id === id);
-    setGoals(goals.filter((goal) => goal.id !== id));
-    setArchivedGoals((prevArchivedGoals) => [...prevArchivedGoals, archivedGoal]);
-  };
-  
-  const unarchiveGoals = (id) => {
-    const unarchivedGoal = archivedGoals.find((goal) => goal.id === id);
-    setArchivedGoals((prevArchivedGoals) =>
-      prevArchivedGoals.filter((goal) => goal.id !== id)
-    );
-    setGoals((prevGoals) => [...prevGoals, unarchivedGoal]);
-  };
-  
-  const deleteGoals = (id) => {
-    setGoals(prevGoals => prevGoals.filter(goal => goal.id !== id));
+    dispatch(archiveGoal(id));
   };
 
-  const editGoal = (id, goalsArray) => {
-    setGoals((prevGoals) =>
-      prevGoals.map((data) =>
-        data.id === id ? { ...data, ...goalsArray } : data
-      )
-    );
-    setEditGoals(null);
+  const unarchiveGoals = (id) => {
+    dispatch(unarchiveGoal(id));
   };
+
+  const deleteGoals = (id) => {
+    dispatch(deleteGoal(id));
+  };
+
+  const startEdit = (goal) => {
+    setSelectedGoal(goal);
+    setEditGoals(true);
+    handleOpenPopup();
+  };
+
+  const handleEditGoal = (updatedGoal) => {
+    dispatch(editGoal({ id: selectedGoal.id, data: updatedGoal }));
+    handleClosePopup();
+  };
+
+  if (loading) {
+      return (
+        <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center h-screen bg-popup_bg">
+        <Oval
+      visible={true}
+      height="50"
+      width="50"
+      color="#ffffff"
+      ariaLabel="oval-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      />
+      </div>);
+  }
 
   return (
     <div className="font-Roboto w-full h-screen">
       <div className="text-xl font-semibold pt-3 pl-4 text-neutral-700">
         Set Your Goals
         <h2 className="text-[12px] font-Inter font-light pl-3 text-[#475467]">
-          Share your job position and company details with the AI to create
-          intelligent interview plans.
+          Share your job position and company details with the AI to create intelligent interview plans.
         </h2>
       </div>
       <div className="flex justify-between mt-6 mx-9 text-[#353535]">
@@ -110,15 +124,9 @@ const CreateGoals = () => {
         </button>
       </div>
 
-      {isPopupOpen && (
-        <AddGoals addGoals={addGoals} />
-      )}
-      {editGoals && (
-        <EditGoals
-          task={goals.find((data) => data.id === editGoals)}
-          editGoal={editGoal}
-        />
-      )}
+      {isPopupOpen && !editGoals && <AddGoals onClose={handleClosePopup} />}
+      {isPopupOpen && editGoals && <EditGoals goal={selectedGoal} onSave={handleEditGoal} onClose={handleClosePopup} />}
+
       <div className="font-Manrope flex flex-col justify-start mx-8 my-4 rounded-lg h-auto md:shadow-2xl shadow-indigo-500/40 bg-opacity-30">
         <div className="flex text-sm gap-16 border-b text-[#475467] border-[#475467] border-opacity-40 py-3 pt-6 px-4 font-semibold">
           <p>Position</p>
@@ -128,10 +136,9 @@ const CreateGoals = () => {
         </div>
 
         <div className="flex flex-col overflow-y-auto h-72 !important">
-        {isActive &&
-          goals.map((data, index) => (
+          {isActive && users && users.filter(user => !user.isArchived).map((data) => (
             <div
-              key={index}
+              key={data.id}
               className="flex gap-24 text-[#475467] text-xs mx-8 items-center py-5 border-b border-[#475467] border-opacity-40 pb-4"
             >
               <p className="w-7">{data.position}</p>
@@ -139,29 +146,30 @@ const CreateGoals = () => {
               <p className="w-7">{data.location}</p>
               <p className="w-7">{data.programmingLanguage}</p>
               <div className="flex flex-grow justify-end">
-                <ActiveSec startEdit={() => setEditGoals(data.id)} archiveGoals={()=>archiveGoals(data.id)}/>
+                <ActiveSec
+                  startEdit={() => startEdit(data)}
+                  archiveGoals={() => archiveGoals(data.id)}
+                />
               </div>
             </div>
           ))}
-          {archivedGoals.length > 0 &&
-            !isActive &&
-            archivedGoals.map((data, index) => (
-              <div
-                key={index}
-                className="flex gap-24 text-[#475467] text-xs mx-8 items-center py-5 border-b border-[#475467] border-opacity-40 pb-4"
-              >
-                <p className="w-7">{data.position}</p>
-                <p className="w-7">{data.companyName}</p>
-                <p className="w-7">{data.location}</p>
-                <p className="w-7">{data.programmingLanguage}</p>
-                <div className="flex flex-grow justify-end">
-                  <InActiveSec
-                    deleteGoals={() => deleteGoals(data.id)} 
-                    unarchiveGoals={() => unarchiveGoals(data.id)}
-                  />
-                </div>
+          {archivedGoals.length > 0 && !isActive && archivedGoals.map((data) => (
+            <div
+              key={data.id}
+              className="flex gap-24 text-[#475467] text-xs mx-8 items-center py-5 border-b border-[#475467] border-opacity-40 pb-4"
+            >
+              <p className="w-7">{data.position}</p>
+              <p className="w-7">{data.companyName}</p>
+              <p className="w-7">{data.location}</p>
+              <p className="w-7">{data.programmingLanguage}</p>
+              <div className="flex flex-grow justify-end">
+                <InActiveSec
+                  deleteGoals={() => deleteGoals(data.id)}
+                  unarchiveGoals={() => unarchiveGoals(data.id)}
+                />
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>

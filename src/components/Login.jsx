@@ -331,7 +331,7 @@ const Login = () => {
 
                     {showSignup ? (
                         <div className='bg-white sm:w-[420px] w-[280px] h-auto rounded-xl'>
-                            <div className='sm:mt-2 sm:mx-16 mt-2 mx-6 font-Inter text-lg'>Signup
+                            <div className='sm:my-5 sm:mx-16 my-3 mx-6 font-Inter text-lg'>Signup
                                 <p className='sm:text-[11px] text-[9px] font-Inter text-[#9A9AB0]'>Please enter your details to create your free account.</p>
                                 <div>
                                     <Formik

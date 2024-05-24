@@ -1,167 +1,146 @@
 import React from "react";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { closePopup } from "../../../reducers/PopupReducer";
 
-const EditGoals = ({ task, editGoal }) => {
-  const isPopupOpen = useSelector((state) => state.popup.isPopupOpen);
+const EditGoals = ({ goal, onSave, onClose }) => {
   const dispatch = useDispatch();
 
   const handleClosePopup = () => {
     dispatch(closePopup());
+    onClose();
   };
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      editGoal(task.id, {
-        position: values.position,
-        companyName: values.companyName,
-        location: values.location,
-        programmingLanguage: values.programmingLanguage,
-      });
-      setSubmitting(false);
-      handleClosePopup();
-    } catch (error) {
-      console.error(error);
-    }
+  const handleSubmit = (values, { setSubmitting }) => {
+    onSave(values);
+    setSubmitting(false);
+    handleClosePopup();
   };
 
   return (
+    <div
+      className="fixed top-0 left-0 right-0 bottom-0 flex items-center bg-popup_bg"
+      onClick={handleClosePopup}
+    >
       <div
-        className="fixed top-0 left-0 right-0 bottom-0 flex items-center bg-popup_bg"
-        onClick={handleClosePopup}
+        className="fixed top-[55px] left-[580px] right-0 flex bg-white rounded-xl h-auto w-[360px] z-100"
+        onClick={(e) => e.stopPropagation()}
+        style={{ animation: "dropTop .3s linear" }}
       >
-        <div
-          className="fixed top-[55px] left-[580px] right-0 flex bg-white rounded-xl h-auto w-[360px] z-100"
-          onClick={(e) => e.stopPropagation()}
-          style={{ animation: "dropTop .3s linear" }}
-        >
-          <div className="flex flex-col">
-            <p className="pb-1 pt-4 pl-6 text-lg font-semibold font-Manrope">
-              Edit Goals
-            </p>
-            <p className="px-3 pl-6 text-xs text-[#475467] font-Roboto">
-              Share your job position and company details with the AI to create
-              intelligent interview plans.
-            </p>
+        <div className="flex flex-col">
+          <p className="pb-1 pt-4 pl-6 text-lg font-semibold font-Manrope">
+            Edit Goals
+          </p>
+          <p className="px-3 pl-6 text-xs text-[#475467] font-Roboto">
+            Share your job position and company details with the AI to create
+            intelligent interview plans.
+          </p>
 
-            <Formik
-              initialValues={{
-                position: "",
-                companyName: "",
-                location: "",
-                programmingLanguage: "",
-              }}
-              validationSchema={Yup.object({
-                position: Yup.string().required("Required"),
-                companyName: Yup.string().required("Required"),
-                location: Yup.string().required("Required"),
-                programmingLanguage: Yup.string().required("Required"),
-              })}
-              onSubmit={handleSubmit}
-            >
-              {(formik) => (
-                <Form className="flex flex-col gap-4 mx-6 my-3">
-                  <div className="font-Mulish sm:w-[300px] w-[200px]">
-                    <p className="text-xs font-bold">Position</p>
-                    <div className="relative flex">
-                      <input
-                        placeholder="Set Position"
-                        type="text"
-                        name="position"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.position}
-                        className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
-                      />
-                    </div>
-                    <ErrorMessage
+          <Formik
+            initialValues={{
+              position: goal?.position || "",
+              companyName: goal?.companyName || "",
+              location: goal?.location || "",
+              programmingLanguage: goal?.programmingLanguage || "",
+            }}
+            validationSchema={Yup.object({
+              position: Yup.string().required("Required"),
+              companyName: Yup.string().required("Required"),
+              location: Yup.string().required("Required"),
+              programmingLanguage: Yup.string().required("Required"),
+            })}
+            onSubmit={handleSubmit}
+          >
+            {(formik) => (
+              <Form className="flex flex-col gap-4 mx-6 my-3">
+                <div className="font-Mulish sm:w-[300px] w-[200px]">
+                  <p className="text-xs font-bold">Position</p>
+                  <div className="relative flex">
+                    <Field
+                      placeholder="Set Position"
+                      type="text"
                       name="position"
-                      component="div"
-                      className="text-red-700 text-xs"
+                      className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
                     />
                   </div>
+                  <ErrorMessage
+                    name="position"
+                    component="div"
+                    className="text-red-700 text-xs"
+                  />
+                </div>
 
-                  <div className="font-Mulish sm:w-[300px] w-[200px]">
-                    <p className="text-xs font-bold">Company Name</p>
-                    <div className="relative flex">
-                      <input
-                        placeholder="Set Company Name"
-                        type="text"
-                        name="companyName"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.companyName}
-                        className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
-                      />
-                    </div>
-                    <ErrorMessage
+                <div className="font-Mulish sm:w-[300px] w-[200px]">
+                  <p className="text-xs font-bold">Company Name</p>
+                  <div className="relative flex">
+                    <Field
+                      placeholder="Set Company Name"
+                      type="text"
                       name="companyName"
-                      component="div"
-                      className="text-red-700 text-xs"
+                      className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
                     />
                   </div>
-                  <div className="font-Mulish sm:w-[300px] w-[200px]">
-                    <p className="text-xs font-bold">Location</p>
-                    <div className="relative flex">
-                      <input
-                        placeholder="Set Location"
-                        type="text"
-                        name="location"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.location}
-                        className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
-                      />
-                    </div>
-                    <ErrorMessage
+                  <ErrorMessage
+                    name="companyName"
+                    component="div"
+                    className="text-red-700 text-xs"
+                  />
+                </div>
+                <div className="font-Mulish sm:w-[300px] w-[200px]">
+                  <p className="text-xs font-bold">Location</p>
+                  <div className="relative flex">
+                    <Field
+                      placeholder="Set Location"
+                      type="text"
                       name="location"
-                      component="div"
-                      className="text-red-700 text-xs"
+                      className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
                     />
                   </div>
-                  <div className="font-Mulish sm:w-[300px] w-[200px]">
-                    <p className="text-xs font-bold">Programming Language</p>
-                    <div className="relative flex">
-                      <input
-                        placeholder="Set Programming language"
-                        type="text"
-                        name="programmingLanguage"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.programmingLanguage}
-                        className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
-                      />
-                    </div>
-                    <ErrorMessage
+                  <ErrorMessage
+                    name="location"
+                    component="div"
+                    className="text-red-700 text-xs"
+                  />
+                </div>
+                <div className="font-Mulish sm:w-[300px] w-[200px]">
+                  <p className="text-xs font-bold">Programming Language</p>
+                  <div className="relative flex">
+                    <Field
+                      placeholder="Set Programming language"
+                      type="text"
                       name="programmingLanguage"
-                      component="div"
-                      className="text-red-700 text-xs"
+                      className="w-72 h-7 text-[11px] focus:ring-0 focus:border-current rounded-sm"
                     />
                   </div>
-                  <div className="flex gap-3 ml-32">
-                    <button
-                      type="button"
-                      onClick={handleClosePopup}
-                      className="w-[85px] h-7 text-[12px] flex items-center justify-center rounded-[5px] text-[#6C6C6C] bg-[#D9D9D9]"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="w-[85px] h-7 text-[12px] flex items-center justify-center rounded-[5px] text-[#6C6C6C] bg-[#D9D9D9]"
-                      onClick={formik.handleSubmit}
-                    >
-                      Create
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-          </div>
+                  <ErrorMessage
+                    name="programmingLanguage"
+                    component="div"
+                    className="text-red-700 text-xs"
+                  />
+                </div>
+                <div className="flex gap-3 ml-32">
+                  <button
+                    type="button"
+                    onClick={handleClosePopup}
+                    className="w-[85px] h-7 text-[12px] flex items-center justify-center rounded-[5px] text-[#6C6C6C] bg-[#D9D9D9]"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="w-[85px] h-7 text-[12px] flex items-center justify-center rounded-[5px] text-[#6C6C6C] bg-[#D9D9D9]"
+                    onClick={formik.handleSubmit}
+                  >
+                    Update
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
+    </div>
   );
 };
 

@@ -30,6 +30,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const allGoals = useSelector(state => state.goals.users);
+
   // const user = useSelector((state) => state.user.token);
   // useEffect(()=>{
   //   if(!user){
@@ -160,7 +162,7 @@ const Dashboard = () => {
               onClick={handleSetGoals}
             >
               <img src={square} alt="" className="h-6 w-6 ml-4" />
-              <div className="ml-2" onClick={() => setIsGoalsOpen(true)}>Set Goals</div>
+              <div className="ml-2" onClick={() => setIsGoalsOpen(true)}>Set Goals ({allGoals.length})</div>
             </div>
 
             <div

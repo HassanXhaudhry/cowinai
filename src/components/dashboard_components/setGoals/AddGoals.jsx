@@ -1,12 +1,11 @@
 import React from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { closePopup } from "../../../reducers/PopupReducer";
 import { createGoal } from "../../../reducers/GoalsReducer";
 
 const AddGoals = () => {
-  const isPopupOpen = useSelector((state) => state.popup.isPopupOpen);
   
   const dispatchPopup = useDispatch();
   const dispatchGoals = useDispatch();
