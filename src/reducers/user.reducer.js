@@ -34,7 +34,6 @@ export const userSlice = createSlice({
     setUserNull:(state,action)=>{
       localStorage.removeItem('APP_USER_TOKEN');
       state.token = action.payload;
-      debugger
     }
   },
 });
